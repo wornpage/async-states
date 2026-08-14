@@ -4,6 +4,16 @@ Compact Svelte 5 loading, empty, and error states for application workflows.
 The package is source-delivered so consuming SvelteKit applications compile it
 with their own theme tokens and CSP policy.
 
+<!-- wornpage-delivery:v2 source -->
+## Delivery
+
+`src/` is the canonical implementation and published runtime. This package is source-only; it does not ship a generated `dist/` directory.
+
+Repository text is checked out as LF through `.gitattributes`, so generated output is byte-stable across Windows and Linux.
+
+The shared [component delivery contract](https://github.com/wornpage/cli/blob/master/docs/component-delivery.md) checks this declaration, package exports, packed files, and generated output on every push and pull request.
+<!-- /wornpage-delivery -->
+
 ## Install
 
 ```sh
