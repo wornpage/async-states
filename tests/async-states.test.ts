@@ -62,6 +62,7 @@ describe('@wornpage/async-states', () => {
 		expect(spinner).toContain("import { prefersReducedMotion } from 'svelte/motion';");
 		expect(spinner).toMatch(/\{#if !prefersReducedMotion\.current\}[\s\S]*?<animate/u);
 		expect(spinner).toContain('@media (prefers-reduced-motion: reduce)');
+		expect(spinner).toContain('.worn-spinner-dot { animation: none; opacity: 1; }');
 		expect(spinner).toContain('.worn-spinner.is-sm .worn-spinner-dots { gap: 4px; }');
 	});
 
