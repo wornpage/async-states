@@ -1,91 +1,14 @@
-# @wornpage/async-states
+# Wornpage async-states — historical repository
 
-> Part of **[Wornpage Components](https://github.com/wornpage/wornpage#component-library)**.
-> [Browse the catalog](https://wornpage.pages.dev) · [Setup guide](https://github.com/wornpage/wornpage/blob/main/docs/getting-started.md) · [Wornpage overview](https://github.com/wornpage/wornpage)
+Active source, documentation, and releases now live in
+[`wornpage/wornpage/packages/async-states`](https://github.com/wornpage/wornpage/tree/main/packages/async-states).
 
-Compact Svelte 5 loading, empty, and error states for application workflows.
-The package is source-delivered so consuming SvelteKit applications compile it
-with their own theme tokens and CSP policy.
+[Browse Components](https://wornpage-components.pages.dev) · [Installation guide](https://github.com/wornpage/wornpage/blob/main/docs/getting-started.md) · [Releases](https://github.com/wornpage/wornpage/releases)
 
-<!-- wornpage-delivery:v2 source -->
-## Delivery
+This repository stays public to preserve exact commit archive URLs used by existing Projects and Afterlist editions. Existing branches, tags, and source history are retained.
 
-`src/` is the canonical implementation and published runtime. This package is source-only; it does not ship a generated `dist/` directory.
+New issues, pull requests, and component changes belong in the canonical repository. The standalone release workflow has been retired.
 
-Repository text is checked out as LF through `.gitattributes`, so generated output is byte-stable across Windows and Linux.
+See the [migration record](https://github.com/wornpage/wornpage/blob/main/docs/component-migration.md) for source ownership and compatibility requirements.
 
-The shared [component delivery contract](https://github.com/wornpage/cli/blob/master/docs/component-delivery.md) checks this declaration, package exports, packed files, and generated output on every push and pull request.
-<!-- /wornpage-delivery -->
-
-## Source use
-
-This package is not published to npm. Check out this repository at a reviewed commit, install its
-dependencies from `bun.lock`, and consume `src/index.ts` through a local workspace alias. The
-`@wornpage/async-states` imports below assume that local alias; they do not resolve from the public
-npm registry.
-
-## Usage
-
-```svelte
-<script>
-  import { Empty, ErrorState, Skeleton, Spinner } from '@wornpage/async-states';
-</script>
-
-{#if loading}
-  <Skeleton lines={4} />
-{:else if error}
-  <ErrorState message="Could not load work" detail={error} onretry={reload} />
-{:else if items.length === 0}
-  <Empty title="No work yet" />
-{:else}
-  <!-- results -->
-{/if}
-
-<Spinner label="Loading more work" />
-```
-
-## Components
-
-### Empty
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | required | Empty-state heading |
-| `description` | `string` | - | Supporting copy |
-| `children` | snippet | - | Optional content or actions |
-
-### ErrorState
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `message` | `string` | `"Something went wrong"` | Error heading |
-| `detail` | `string` | - | Supporting detail |
-| `onretry` | `() => void \| Promise<void>` | - | Adds a serialized Retry action |
-| `children` | snippet | - | Additional recovery content |
-
-### Spinner
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `type` | `"ring" \| "dots" \| "blob"` | `"ring"` | Visual style |
-| `size` | `"sm" \| "md"` | `"md"` | Visual size |
-| `label` | `string` | `"Loading…"` | Screen-reader status text |
-| `variant` | `"default" \| "accent"` | `"default"` | Color treatment |
-| `announce` | `boolean` | `true` | Set false for decorative or portfolio-only examples |
-
-### Skeleton
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `lines` | `number` | `3` | Number of placeholder lines |
-| `width` | `"full" \| "half" \| "third"` | `"full"` | Container width preset |
-| `loading` | `boolean` | `true` | Show the placeholder instead of children |
-| `children` | snippet | - | Content rendered after loading |
-
-Empty and ErrorState contain hostile text within their parent and leave outer
-spacing to the consuming layout. ErrorState exposes assertive error semantics
-and serializes asynchronous retry work. Spinner announces one polite status by
-default; `announce={false}` removes the visual example from the accessibility
-tree. Reduced motion stops Spinner animation without fading its visible
-indicator. Skeleton is a named, polite loading status with a busy state and
-stops shimmer under reduced motion.
+Standalone maintenance ended on 2026-09-07. Existing source licenses continue to apply.
